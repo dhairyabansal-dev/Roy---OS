@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Bay / Personal AI Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="mobile.css">
+<style>@media (max-width: 760px) { .mobile-menu { display: block; border: 0; background: transparent; color: var(--text); font-size: 19px; } }</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><span class="brand-mark">◆</span><div><strong>AGENT BAY</strong><small>PERSONAL AI MISSION CONTROL</small></div></div>
+    <nav class="nav" id="nav">
+      <button class="nav-item active" data-view="overview"><span>◈</span>Overview</button>
+      <button class="nav-item" data-view="mission"><span>◎</span>Mission Control</button>
+      <button class="nav-item" data-view="agents"><span>✦</span>AI Agents</button>
+      <button class="nav-item" data-view="projects"><span>▣</span>Projects</button>
+      <button class="nav-item" data-view="tasks"><span>✓</span>Tasks</button>
+      <button class="nav-item" data-view="memory"><span>⌁</span>Memory</button>
+      <button class="nav-item" data-view="activity"><span>≡</span>Activity</button>
+      <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
+    </nav>
+    <div class="sidebar-footer"><span class="online-dot"></span><span>LOCAL-FIRST SYSTEM</span><b id="sidebar-model">READY</b></div>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Open navigation">☰</button>
+      <div><div class="eyebrow" id="page-eyebrow">OVERVIEW / PERSONAL AI WORKSPACE</div><h1 id="page-title">Good morning, Roy.</h1><p id="page-subtitle">Your personal AI workspace is ready.</p></div>
+      <div class="top-status"><span class="status-pill"><i></i><b id="top-system">SYSTEM ONLINE</b></span><span class="meta-pill">MODEL <b id="top-model">qwen3:4b</b></span><span class="meta-pill">MEMORY <b>ACTIVE</b></span></div>
+    </header>
+
+    <section class="view active" id="view-overview">
+      <div class="hero-row"><div><div class="eyebrow">MISSION CONTROL / TODAY</div><h2>Your AI workspace is ready.</h2><p class="muted">Direct the work. Your agents keep the memory.</p></div><button class="amber-button" data-go="mission">Open Mission Control <span>→</span></button></div>
+      <div class="stats-grid"><article class="system-card"><div class="card-label">AI SYSTEM <span class="live-label">● ONLINE</span></div><div class="system-state">Online</div><p><span id="overview-agent-count">0</span> agents active <span class="dot-separator">·</span> local model ready</p><div class="signal" id="signal"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><article class="stat-card"><span class="card-label">ACTIVE AGENTS</span><strong id="stat-agents">0</strong><small>Ready for delegation</small></article><article class="stat-card"><span class="card-label">ACTIVE MISSIONS</span><strong id="stat-missions">0</strong><small>Stored locally</small></article><article class="stat-card"><span class="card-label">COMPLETED TODAY</span><strong id="stat-completed">0</strong><small>Verified completions</small></article></div>
+      <div class="section-head"><div><h2>AI Agents</h2><p class="muted">Specialized intelligence, one shared mission system.</p></div><button class="text-button" data-go="agents">View all agents →</button></div>
+      <div class="agent-grid" id="overview-agents"></div>
+      <div class="command-strip"><div><span class="card-label">COMMAND CENTER</span><h2>What should Mission Control execute?</h2><p class="muted">Create missions, inspect priorities, or delegate work.</p></div><button class="amber-button" data-focus-command>Start a command <span>↗</span></button></div>
+    </section>
+
+    <section class="view" id="view-mission">
+      <div class="section-head page-head"><div><div class="eyebrow">MISSION CONTROL / EXECUTION</div><h2>Mission Control</h2><p class="muted">Command, delegate, execute, report.</p></div><div class="page-actions"><button class="outline-button" id="briefing-btn">Daily briefing</button><button class="amber-button" id="focus-btn">Focus mode <span>↗</span></button></div></div>
+      <div class="mission-top"><article class="feature-card current-card"><div class="card-label">CURRENT MISSION</div><h3 id="current-mission">No active missions.</h3><p id="mission-meta" class="muted">Mission Control is waiting for your next command.</p><div class="progress-row"><span id="mission-progress-label">0%</span><div class="progress-track"><div id="mission-progress"></div></div></div><div class="assigned" id="assigned-agent">ASSIGNED AGENT / UNASSIGNED</div><button class="amber-button small-button" id="complete-btn" hidden>Complete task</button></article><article class="feature-card next-card"><div class="card-label">NEXT BEST ACTION</div><h3 id="next-action">No active missions.</h3><p id="next-reason" class="muted">The priority engine is awaiting stored work.</p><div class="priority-chip" id="next-score">-- / 10</div><button class="outline-button small-button" id="execute-next" hidden>Execute next action →</button></article><article class="feature-card status-card"><div class="card-label">SYSTEM STATUS</div><div class="system-state">● ONLINE</div><div id="system-facts" class="facts">Agents: 0 / 0<br>Active missions: 0<br>Completed today: 0<br>Memory: ACTIVE</div></article></div>
+      <div class="intelligence-card"><div class="section-head"><div><div class="card-label">MISSION INTELLIGENCE</div><h3 id="intelligence-status">NO ACTIVE MISSION</h3></div><span class="mono muted">REAL STORED STATE</span></div><div class="intelligence-grid"><div><span class="data-label">OBJECTIVE</span><p id="mission-objective">No objective recorded.</p><span class="data-label">CURRENT PHASE</span><p id="mission-phase">Awaiting mission.</p></div><div><span class="data-label">PROGRESS</span><strong class="progress-number" id="progress-number">0%</strong><div class="progress-track large"><div id="intelligence-progress"></div></div><span class="data-label">SUBTASKS</span><div id="subtask-list" class="subtask-list">No subtasks recorded.</div></div><div><span class="data-label">PRIORITY ANALYSIS</span><strong class="priority-score" id="priority-score">-- / 10</strong><div id="priority-factors" class="factor-list">No priority analysis.</div></div></div></div>
+      <div class="activity-card"><div class="section-head"><div><div class="card-label">SYSTEM ACTIVITY</div><h3>Execution terminal</h3></div><div class="filter-row" id="activity-filters"><button class="selected" data-filter="all">ALL</button><button data-filter="missions">MISSIONS</button><button data-filter="agents">AGENTS</button><button data-filter="system">SYSTEM</button><button data-filter="errors">ERRORS</button></div></div><div id="activity-list" class="activity-list">No activity recorded.</div></div>
+    </section>
+
+    <section class="view" id="view-agents"><div id="agent-directory"><div class="section-head page-head"><div><div class="eyebrow">OPERATIONS / WORKER MODE</div><h2>AI Agents</h2><p class="muted">Select a persistent worker to chat, direct work, and review its activity.</p></div></div><div class="agent-grid full-grid" id="agents-grid"></div><div class="developer-console"><div class="section-head"><div><div class="card-label">WORKER MODE</div><h3>Direct agent operations</h3></div><span class="status-pill"><i></i>ONLINE</span></div><div class="console-lines">Mission Control routes universal commands. Agent Workspaces send messages only to the selected specialist.</div></div></div><div id="agent-workspace" hidden><button class="text-button workspace-back" id="agent-workspace-back">← All agents</button><div class="workspace-header"><div><div class="eyebrow">AI AGENTS / DIRECT WORKSPACE</div><h2 id="workspace-agent-name">Agent</h2><p class="muted" id="workspace-agent-description">Specialist workspace</p></div><div class="workspace-status"><span class="status-pill"><i></i><b id="workspace-agent-status">ONLINE</b></span><span class="meta-pill">CURRENT WORK <b id="workspace-agent-work">IDLE</b></span><span class="meta-pill">ACTIVE TASKS <b id="workspace-agent-tasks">0</b></span></div></div><div class="workspace-tabs"><span class="selected">CHAT</span><span>TASKS</span><span>ACTIVITY</span></div><div class="agent-chat" id="agent-chat" aria-live="polite"></div><form class="agent-composer" id="agent-composer"><input id="agent-message-input" placeholder="Message agent..." autocomplete="off"><button id="agent-send-btn" type="submit">SEND <span>↗</span></button></form></div></section>
+
+    <section class="view" id="view-projects"><div class="section-head page-head"><div><div class="eyebrow">MEMORY / LONG-TERM CONTEXT</div><h2>Projects</h2><p class="muted">Long-term entities connected to missions and activity.</p></div></div><div class="projects-grid" id="projects-grid">No projects recorded.</div></section>
+    <section class="view" id="view-tasks"><div class="section-head page-head"><div><div class="eyebrow">EXECUTION / QUEUE</div><h2>Tasks</h2><p class="muted">Every mission is local, visible, and actionable.</p></div></div><div class="tasks-list" id="tasks-list">No active missions.</div></section>
+    <section class="view" id="view-memory"><div class="section-head page-head"><div><div class="eyebrow">MEMORY / LOCAL RECORDS</div><h2>Memory</h2><p class="muted">Project memory, command history, and system activity remain on this machine.</p></div></div><div class="memory-grid"><article class="plain-card"><span class="card-label">PROJECT MEMORY</span><strong id="memory-project-count">0</strong><p class="muted">Structured projects stored locally.</p></article><article class="plain-card"><span class="card-label">COMMAND HISTORY</span><strong id="memory-command-count">0</strong><p class="muted">Delegations retained for continuity.</p></article><article class="plain-card"><span class="card-label">ACTIVITY RECORDS</span><strong id="memory-activity-count">0</strong><p class="muted">Operational events from real agents.</p></article></div></section>
+    <section class="view" id="view-activity"><div class="section-head page-head"><div><div class="eyebrow">OBSERVABILITY / AUDIT</div><h2>Activity</h2><p class="muted">A scan-friendly timeline of execution.</p></div></div><div class="activity-card"><div id="activity-page-list" class="activity-list">No activity recorded.</div></div></section>
+    <section class="view" id="view-settings"><div class="section-head page-head"><div><div class="eyebrow">SYSTEM / CONFIGURATION</div><h2>Settings</h2><p class="muted">Local runtime information and connection boundaries.</p></div></div><div class="settings-card"><div><span class="data-label">LOCAL MODEL</span><strong id="settings-model">qwen3:4b</strong></div><div><span class="data-label">MEMORY</span><strong>ACTIVE / SQLITE</strong></div><div><span class="data-label">NETWORK MODE</span><strong id="settings-network">LAN</strong></div><div><span class="data-label">SERVER</span><strong id="settings-server">0.0.0.0:8000</strong></div></div><article class="mobile-access-card"><div><span class="data-label">MOBILE ACCESS</span><h3>Open Agent Bay on your phone</h3><p class="muted" id="mobile-access-message">Detecting the active private network...</p><div class="mobile-url-row"><code id="mobile-access-url">Detecting address...</code><button class="outline-button" id="copy-mobile-url" type="button" disabled>Copy URL</button></div></div><div class="qr-wrap"><img id="mobile-access-qr" alt="QR code for Agent Bay mobile access" hidden><span id="mobile-access-qr-empty">QR unavailable</span></div></article></section>
+
+    <div class="command-dock"><div class="suggestions"><span>TRY</span><button data-command="Continue Agent Bay">Continue Agent Bay</button><button data-command="Study ACCA for 2 hours">Study ACCA for 2 hours</button><button data-command="What should I work on next?">Analyze priorities</button><button data-command="Work on ROY OS">Work on ROY OS</button></div><form id="composer"><input id="task-input" placeholder="Tell Mission Control what to do..." autocomplete="off"><button id="send-btn" type="submit">EXECUTE <span>↗</span></button></form></div>
+  </main>
+</div>
+<section class="focus-overlay" id="focus-overlay"><div class="focus-eyebrow">FOCUS MODE / DEEP WORK</div><h2 id="focus-mission">Current mission</h2><p id="focus-objective">Objective</p><div class="focus-next"><span>NEXT ACTION</span><b id="focus-next-action">Awaiting mission</b></div><div class="focus-progress"><div id="focus-progress-fill"></div></div><div class="focus-controls"><button id="focus-complete" type="button">COMPLETE TASK</button><button id="focus-skip" type="button">SKIP</button><button id="focus-replan" type="button">REPLAN</button><span id="focus-timer">00:00</span><button id="focus-exit" type="button">EXIT FOCUS</button></div></section>
+<script src="app.js"></script>
+</body>
+</html>
